@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+/* #product-cart {
+    width: 400px;
+    height: 500px;
+} */
+
 .other-links a {
     text-decoration: none;
 }

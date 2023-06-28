@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProductCreated;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -30,7 +32,9 @@ class ProductController extends Controller
     {
 
         // dd(auth()->user()->id);
+        //get information of the current session's user
 
+        $user = auth()->user();
         //sends error mesasge to the view automatically
         $formFields = $request->validate([
             "name" => "required",
@@ -46,7 +50,8 @@ class ProductController extends Controller
         }
         $formFields['user_id'] = auth()->user()->id;
 
-        Product::create($formFields);
+        $product = Product::create($formFields);
+        Mail::to($user)->send(new ProductCreated($product));
 
         //flash message is stored in memory
         return redirect("/")->with("message", "Successfully created");
@@ -88,7 +93,7 @@ class ProductController extends Controller
 
         $product->update($formFields); //user regular update method instead of static create for put
 
-        return back();
+        return back()->with('message', 'Successfully Updated');
     }
 
     public function destroy(Product $product)
@@ -100,6 +105,6 @@ class ProductController extends Controller
         }
 
         $product->delete();
-        return redirect('/');
+        return back()->with('message', "Successfully Deleted");
     }
 }

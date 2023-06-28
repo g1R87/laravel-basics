@@ -3,7 +3,7 @@
         <div class="card p-10">
             <header>
                 <h1 class="text-3xl text-center font-bold my-6 uppercase">
-                    Manage Gigs
+                    Manage your products
                 </h1>
             </header>
 

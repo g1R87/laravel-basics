@@ -1,10 +1,10 @@
 @props(['product'])
 <div class="col-md-3 py-3 py-md-0">
-    <div class="card">
-        <img src="{{ $product->logo ? asset('storage/' . $product->logo) : asset('asset/image/p13.png') }}"
-            alt="no image">
+    <div class="card" id="product-cart">
+        <img class="card-img-top"
+            src="{{ $product->logo ? asset('storage/' . $product->logo) : asset('asset/image/p13.png') }}" alt="no image">
         <div class="card-body">
-            <a href="/products/{{ $product['id'] }}">
+            <a class="card-title" href="/products/{{ $product['id'] }}">
                 <h3>{{ $product['name'] }}</h3>
             </a>
             <p>Lorem ipsum dolor sit amet.</p>
